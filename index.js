@@ -101,7 +101,7 @@ async function run() {
       const result = await octokit.graphql(addIssueToProjectNext(contentId = issueId, projectRelayId = board ));
       console.log("LOG 5" + JSON.stringify(result));
 
-      const itemId = result.data.addProjectNextItem.projectNextItem.id;
+      const itemId = result.addProjectNextItem.projectNextItem.id;
       console.log("LOG 6" + JSON.stringify(itemId));
 
       if (shouldUpdateWithField){
