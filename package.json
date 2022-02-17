@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jenschelkopf/issue-label-notification-action.git"
+    "url": "git+https://github.com/avocaddo/issue-label-move-to-board-action.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jenschelkopf/issue-label-notification-action/issues"
+    "url": "https://github.com/avocaddo/issue-label-move-to-board-action/issues"
   },
-  "homepage": "https://github.com/jenschelkopf/issue-label-notification-action#readme",
+  "homepage": "https://github.com/avocaddo/issue-label-move-to-board-action#readme",
   "dependencies": {
     "@actions/core": "^1.2.4",
     "@actions/github": "^4.0.0",

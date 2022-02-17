@@ -78,7 +78,7 @@ on:
       types: [labeled]
 
 jobs:
-  notify:
+  add-to-board:
     runs-on: ubuntu-latest
     steps:
         - uses: avocaddo/issue-label-move-to-board-action@1.0
