@@ -45,7 +45,6 @@ async function run() {
     const owner = github.context.repo.owner;
     const repo = github.context.repo.repo;
     const label = github.context.payload.label.name;
-    const issueId = github.event.issue.node_id
 
     const token = core.getInput('token');
     const octokit = github.getOctokit(token);
@@ -67,9 +66,11 @@ async function run() {
         body: comment
       });
 
+      const issueId = await octokit.graphql(getIssue(repoOwner = owner, repoName = repo, issueId = issueNumber));
+      console.log("HERE TEST0" + issueID);
+
       const result = await octokit.graphql(addIssueToProjectNext(contentId = issueId, projectRelayId = boards ));
       console.log("HERE TEST1" + boards);
-      console.log("HERE TEST2" + issueID);
       console.log("HERE TEST3" + result);
     } else {
       console.log("No matching recipients found for label ${label}.");
