@@ -9520,14 +9520,6 @@ async function run() {
       const all = boardField.split(",");
       const board = all[0];
       const shouldUpdateWithField = all && all.length > 2;
-      if (shouldUpdateWithField) {
-        const fieldLabel = all[1].replace(/^"|"$/g, '');
-        const fieldValue = all[2].replace(/^"|"$/g, '');
-        console.log("LOG 0" + JSON.stringify(board) + "\n");
-        console.log("LOG 1" + JSON.stringify(fieldLabel) + "\n");
-        console.log("LOG 2" + JSON.stringify(fieldValue) + "\n");
-      }
-
       console.log("LOG 3" + message + "\n");
 
       if(message && message.length > 0) {
@@ -9554,6 +9546,11 @@ async function run() {
       console.log("LOG 6" + JSON.stringify(itemId));
 
       if (shouldUpdateWithField){
+        const fieldLabel = all[1].replace(/^"|"$/g, '');
+        const fieldValue = all[2].replace(/^"|"$/g, '');
+        console.log("LOG 0" + JSON.stringify(board) + "\n");
+        console.log("LOG 1" + JSON.stringify(fieldLabel) + "\n");
+        console.log("LOG 2" + JSON.stringify(fieldValue) + "\n");
         const queryUpdateField = updateIssueWithFieldNext(contentId = issueId, projectRelayId = board, field = fieldLabel, value = fieldValue);
         console.log("LOG 7" + JSON.stringify(queryUpdateField));
         const resultUpdate = await octokit.graphql(queryUpdateField);
