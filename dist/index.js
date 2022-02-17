@@ -9488,9 +9488,9 @@ const { correctBoards, correctMessage } = __nccwpck_require__(4635);
   }
 
   // Update the issue to the Project vNext
-const updateIssueWithFieldNext = (contentId, projectRelayId, field, value, id) => {
+const updateIssueWithFieldNext = (projectRelayId, field, value, id) => {
     return `mutation {
-        updateProjectNextItemField(input: {contentId: "${contentId}", projectId: "${projectRelayId}", itemId: "${id}", fieldId: "${field}", value: "${value}"}) {
+        updateProjectNextItemField(input: { projectId: "${projectRelayId}", itemId: "${id}", fieldId: "${field}", value: "${value}"}) {
           projectNextItem {
             id
           }
@@ -9551,7 +9551,7 @@ async function run() {
         console.log("LOG 0" + JSON.stringify(board) + "\n");
         console.log("LOG 1" + JSON.stringify(fieldLabel) + "\n");
         console.log("LOG 2" + JSON.stringify(fieldValue) + "\n");
-        const queryUpdateField = updateIssueWithFieldNext(contentId = issueId, projectRelayId = board, field = fieldLabel, value = fieldValue, id = itemId);
+        const queryUpdateField = updateIssueWithFieldNext(projectRelayId = board, field = fieldLabel, value = fieldValue, id = itemId);
         console.log("LOG 7" + JSON.stringify(queryUpdateField));
         const resultUpdate = await octokit.graphql(queryUpdateField);
         console.log("LOG 8" + JSON.stringify(resultUpdate));
