@@ -66,11 +66,10 @@ async function run() {
     });
 
     const message = core.getInput('message');
-
     if (match) {
       const boardField = correctBoards(match.split("=")[1]);
       const all = boardField.split(",");
-      const shouldUpdateWithLabel = all && all.length > 2;
+      const shouldUpdateWithField = all && all.length > 2;
       if (shouldUpdateWithField) {
         const board = all[0];
         const fieldLabel = all[1].replace(/^"|"$/g, '');
