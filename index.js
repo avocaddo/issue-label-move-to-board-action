@@ -15,11 +15,11 @@ const { correctBoards, correctMessage } = require('./utils');
   };
 
   // Query to get the Relay ID of the Issue
-  const getIssue = (repoOwner, repoName, issueId) => {
+  const getIssue = (repoOwner, repoName, issueNumber) => {
     return `{
       repositoryOwner(login: "${repoOwner}") {
         repository(name: "${repoName}") {
-          issue(number: ${issueId}) {
+          issue(number: ${issueNumber}) {
             id
           }
         }
@@ -41,7 +41,7 @@ const { correctBoards, correctMessage } = require('./utils');
 
 async function run() {
   try {
-    const issueNumber = github.context.payload.issue.number;
+    const issueNb= github.context.payload.issue.number;
     const owner = github.context.repo.owner;
     const repo = github.context.repo.repo;
     const label = github.context.payload.label.name;
@@ -62,11 +62,11 @@ async function run() {
       const createCommentResponse = await octokit.issues.createComment({
         owner,
         repo,
-        issue_number: issueNumber,
+        issue_number: issueNb,
         body: comment
       });
 
-      const issueId = await octokit.graphql(getIssue(repoOwner = owner, repoName = repo, issueId = issueNumber));
+      const issueId = await octokit.graphql(getIssue(repoOwner = owner, repoName = repo, issueNumber = issueNb));
       console.log("HERE TEST0" + issueID);
 
       const result = await octokit.graphql(addIssueToProjectNext(contentId = issueId, projectRelayId = boards ));
