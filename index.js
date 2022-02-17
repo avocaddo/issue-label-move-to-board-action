@@ -79,7 +79,7 @@ async function run() {
     }
   } catch (error) {
     console.error(error);
-    core.setFailed(`The issue-label-notification-action action failed with ${error}`);
+    core.setFailed(`The issue-label-move-to-board-action action failed with ${error}`);
   }
 }
 
