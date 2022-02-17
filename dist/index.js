@@ -9518,7 +9518,7 @@ async function run() {
 
     if (match) {
       const boardField = correctBoards(match.split("=")[1]);
-      const all = boardField.split("=");
+      const all = boardField.split(",");
       const board = all[0];
       const fieldLabel = all[1];
       const fieldValue = all[2];
