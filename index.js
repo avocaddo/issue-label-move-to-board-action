@@ -79,7 +79,10 @@ async function run() {
         console.log("LOG 1" + JSON.stringify(fieldLabel) + "\n");
         console.log("LOG 2" + JSON.stringify(fieldValue) + "\n");
       }
-      if(message){
+
+      console.log("LOG 3" + message + "\n");
+
+      if(message && message.length > 0) {
         const comment = correctMessage(message, board, label);
         const _ = await octokit.issues.createComment({
           owner,
