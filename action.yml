@@ -10,7 +10,6 @@ inputs:
     required: true
   message:
     description: 'The message to post in the issue comment.'
-    default: 'Heads up this issue has been added to the board {boards} based on the "{label}".'
 runs:
   using: 'node12'
   main: 'dist/index.js'

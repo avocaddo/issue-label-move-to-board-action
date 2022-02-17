@@ -84,9 +84,5 @@ jobs:
         - uses: avocaddo/issue-label-move-to-board-action@1.0
           with:
              boards: |
-                  manhattan=PN_kwHOAmFUEs4AAzzzzz #Obtained from above example
-                  brooklyn=PN_kwHOAmFUdfsFfAAz234 #Another board ID
-
-
-                  manhattan=PN_kwHOAmFUEs4AAzKJ
-                  brooklyn=PN_kwHOAmFUEs4AAzKZ
+                  manhattan=PN_kwHOAmFUEs4AAzKJ,"coucou","cool1" 
+                  brooklyn=PN_kwHOAmFUEs4AAzKZ,"coucou","cool1" 
