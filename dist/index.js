@@ -9519,20 +9519,24 @@ async function run() {
     if (match) {
       const boardField = correctBoards(match.split("=")[1]);
       const all = boardField.split(",");
-      const board = all[0];
-      const fieldLabel = all[1].replace(/^"|"$/g, '');
-      const fieldValue = all[2].replace(/^"|"$/g, '');
-      console.log("LOG 0" + JSON.stringify(board) + "\n");
-      console.log("LOG 1" + JSON.stringify(fieldLabel) + "\n");
-      console.log("LOG 2" + JSON.stringify(fieldValue) + "\n");
-
-      const comment = correctMessage(message, board, label);
-      const _ = await octokit.issues.createComment({
-        owner,
-        repo,
-        issue_number: issueNb,
-        body: comment
-      });
+      const shouldUpdateWithLabel = all && all.length > 2;
+      if (shouldUpdateWithField) {
+        const board = all[0];
+        const fieldLabel = all[1].replace(/^"|"$/g, '');
+        const fieldValue = all[2].replace(/^"|"$/g, '');
+        console.log("LOG 0" + JSON.stringify(board) + "\n");
+        console.log("LOG 1" + JSON.stringify(fieldLabel) + "\n");
+        console.log("LOG 2" + JSON.stringify(fieldValue) + "\n");
+      }
+      if(message){
+        const comment = correctMessage(message, board, label);
+        const _ = await octokit.issues.createComment({
+          owner,
+          repo,
+          issue_number: issueNb,
+          body: comment
+        });
+      }
 
       const queryGetID = getIssue(repoOwner = owner, repoName = repo, issueNumber = issueNb);
       console.log("LOG 3" + JSON.stringify(queryGetID));
@@ -9546,12 +9550,13 @@ async function run() {
 
       const itemId = result.data.addProjectNextItem.projectNextItem.id;
       console.log("LOG 6" + JSON.stringify(itemId));
-      const queryUpdateField = updateIssueWithFieldNext(contentId = issueId, projectRelayId = board, field = fieldLabel, value = fieldValue);
-      console.log("LOG 7" + JSON.stringify(queryUpdateField));
 
-      const resultUpdate = await octokit.graphql(queryUpdateField);
-      console.log("LOG 8" + JSON.stringify(resultUpdate));
-
+      if (shouldUpdateWithField){
+        const queryUpdateField = updateIssueWithFieldNext(contentId = issueId, projectRelayId = board, field = fieldLabel, value = fieldValue);
+        console.log("LOG 7" + JSON.stringify(queryUpdateField));
+        const resultUpdate = await octokit.graphql(queryUpdateField);
+        console.log("LOG 8" + JSON.stringify(resultUpdate));
+      }
     } else {
       console.log("No matching recipients found for label ${label}.");
     }
