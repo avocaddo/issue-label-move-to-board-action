@@ -9518,9 +9518,9 @@ async function run() {
     if (match) {
       const boardField = correctBoards(match.split("=")[1]);
       const all = boardField.split(",");
+      const board = all[0];
       const shouldUpdateWithField = all && all.length > 2;
       if (shouldUpdateWithField) {
-        const board = all[0];
         const fieldLabel = all[1].replace(/^"|"$/g, '');
         const fieldValue = all[2].replace(/^"|"$/g, '');
         console.log("LOG 0" + JSON.stringify(board) + "\n");
