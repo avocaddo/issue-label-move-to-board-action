@@ -1,0 +1,20 @@
+name: 'Issue Label Move to Board'
+description: 'Add issue to boards based on issue labels.'
+inputs:
+  token:
+    description: 'The GitHub authentication token.'
+    required: false
+    default: ${{ github.token }}
+  boards:
+    description: 'Mapping of label to boards ID.'
+    required: true
+  message:
+    description: 'The message to post in the issue comment.'
+    default: 'Heads up this issue has been added to the board {boards} based on the "{label}".'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+
+branding:
+  icon: 'bell'
+  color: 'gray-dark'

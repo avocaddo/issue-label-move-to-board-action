@@ -1,0 +1,29 @@
+{
+  "name": "issue-label-move-to-board-action",
+  "version": "1.0.0",
+  "description": "Add issue to boards based on issue labels.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "ncc build index.js -o dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jenschelkopf/issue-label-notification-action.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jenschelkopf/issue-label-notification-action/issues"
+  },
+  "homepage": "https://github.com/jenschelkopf/issue-label-notification-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^4.0.0",
+    "@zeit/ncc": "^0.22.3"
+  },
+  "devDependencies": {
+    "jest": "^25.2.4"
+  }
+}
