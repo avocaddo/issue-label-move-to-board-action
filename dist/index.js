@@ -9520,8 +9520,8 @@ async function run() {
       const boardField = correctBoards(match.split("=")[1]);
       const all = boardField.split(",");
       const board = all[0];
-      const fieldLabel = all[1];
-      const fieldValue = all[2];
+      const fieldLabel = all[1].replace(/^"|"$/g, '');
+      const fieldValue = all[2].replace(/^"|"$/g, '');
       console.log("LOG 0" + JSON.stringify(board) + "\n");
       console.log("LOG 1" + JSON.stringify(fieldLabel) + "\n");
       console.log("LOG 2" + JSON.stringify(fieldValue) + "\n");
