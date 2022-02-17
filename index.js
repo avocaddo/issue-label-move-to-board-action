@@ -68,9 +68,9 @@ async function run() {
       const queryGetID = getIssue(repoOwner = owner, repoName = repo, issueNumber = issueNb);
       console.log("HERE TEST" + JSON.stringify(queryGetID));
 
-      const issueId = await octokit.graphql(queryGetID);
-      console.log("HERE TEST0" + JSON.stringify(issueId));
-
+      const resIssueId = await octokit.graphql(queryGetID);
+      console.log("HERE TEST0" + JSON.stringify(resIssueId));
+      const issueId = resIssueId.repositoryOwner.repository.issue.id;
       const result = await octokit.graphql(addIssueToProjectNext(contentId = issueId, projectRelayId = boards ));
       console.log("HERE TEST1" + boards);
       console.log("HERE TEST3" + result);
