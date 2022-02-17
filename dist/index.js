@@ -9274,7 +9274,7 @@ function wrappy (fn, cb) {
 
 function correctBoards(boards) {
   const regex = /(^| +|\t+)(?!@)(\w+)/gm;
-  return boards.replace(regex, '$1@$2');
+  return boards.replace(regex, '$1$2');
 }
 
 function correctMessage(message, boards, label) {
