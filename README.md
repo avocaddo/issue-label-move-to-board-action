@@ -96,7 +96,7 @@ First you need to find the field ID and the associated value ID of the metadata 
 ```
   gh api graphql -f query='
     query{
-        user(login: "avocaddo"){
+        organization(login: "avocaddo"){
         projectNext(number: 1) {
             id, fields(first:20) {nodes {id, name, settings}}
             }
