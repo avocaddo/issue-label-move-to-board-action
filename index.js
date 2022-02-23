@@ -71,7 +71,6 @@ async function run() {
       const all = boardField.split(",");
       const board = all[0];
       const shouldUpdateWithField = all && all.length > 2;
-      console.log("LOG 3" + message + "\n");
 
       if(message && message.length > 0) {
         const comment = correctMessage(message, board, label);
@@ -84,28 +83,19 @@ async function run() {
       }
 
       const queryGetID = getIssue(repoOwner = owner, repoName = repo, issueNumber = issueNb);
-      console.log("LOG 3" + JSON.stringify(queryGetID));
 
       const resIssueId = await octokit.graphql(queryGetID);
-      console.log("LOG 4" + JSON.stringify(resIssueId));
 
       const issueId = resIssueId.repositoryOwner.repository.issue.id;
       const result = await octokit.graphql(addIssueToProjectNext(contentId = issueId, projectRelayId = board ));
-      console.log("LOG 5" + JSON.stringify(result));
 
       const itemId = result.addProjectNextItem.projectNextItem.id;
-      console.log("LOG 6" + JSON.stringify(itemId));
 
       if (shouldUpdateWithField){
         const fieldLabel = all[1].replace(/^"|"$/g, '');
         const fieldValue = all[2].replace(/^"|"$/g, '');
-        console.log("LOG 0" + JSON.stringify(board) + "\n");
-        console.log("LOG 1" + JSON.stringify(fieldLabel) + "\n");
-        console.log("LOG 2" + JSON.stringify(fieldValue) + "\n");
         const queryUpdateField = updateIssueWithFieldNext(projectRelayId = board, field = fieldLabel, value = fieldValue, id = itemId);
-        console.log("LOG 7" + JSON.stringify(queryUpdateField));
         const resultUpdate = await octokit.graphql(queryUpdateField);
-        console.log("LOG 8" + JSON.stringify(resultUpdate));
       }
     } else {
       console.log("No matching recipients found for label ${label}.");
