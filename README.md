@@ -84,5 +84,57 @@ jobs:
         - uses: avocaddo/issue-label-move-to-board-action@1.0
           with:
              boards: |
-                  manhattan=PN_kwHOAmFUEs4AAzKJ,"coucou","cool1" 
-                  brooklyn=PN_kwHOAmFUEs4AAzKZ,"coucou","cool1" 
+                  #board={boardID}
+                  manhattan=PN_kwHOAmFUEs4AAzKJ
+                  brooklyn=PN_kwHOAmFUEs4AAzKZ
+```
+### Associating project vNext metadata to your issue
+
+For some more advanced scenario, not only you want to respond to a label and add the issue to the correct board but you may want to associate some metadata to this issue so it will end up directly to the right view.
+
+First you need to find the field ID and the associated value ID of the metadata you want to insert:
+```
+  gh api graphql -f query='
+    query{
+        user(login: "avocaddo"){
+        projectNext(number: 1) {
+            id, fields(first:20) {nodes {id, name, settings}}
+            }
+        }
+    }'
+ ```
+ 
+Locate your field ID and the ID of the option you want to associate to the issue
+ ```
+ {
+  "id": "MDE2OlByb2plY3ROZXh0RmllbGQxNzY0OTcy",
+  "name": "My field",
+  "settings": "{\"options\":[{\"id\":\"0971734d\",\"name\":\"First option\"
+  ,\"name_html\":\"First option\"},{\"id\":\"69cd75ba\",\"name\":\"Second option\",\"name_html\":
+  \"Second option\"}]}"
+}
+```
+
+For example, here I want the issues labeled `manhattan` to be moved to board `PN_kwHOAmFUEs4AAzKJ`.
+This issue will have the value `Second option` (`69cd75ba`) to the field `My field` (`MDE2OlByb2plY3ROZXh0RmllbGQxNzY0OTcy`).
+
+```yaml
+name: Add issue to boards based on issue labels
+
+on:
+  issues:
+      types: [labeled]
+
+jobs:
+  add-to-board:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: avocaddo/issue-label-move-to-board-action@1.0
+          with:
+             boards: |
+                  #board={boardID}, {fieldID}, {fieldValueID}
+                  manhattan=PN_kwHOAmFUEs4AAzKJ, "MDE2OlByb2plY3ROZXh0RmllbGQxNzY0OTcy", "69cd75ba"
+```
+
+
+
