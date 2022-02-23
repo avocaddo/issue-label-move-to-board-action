@@ -132,8 +132,8 @@ jobs:
         - uses: avocaddo/issue-label-move-to-board-action@1.0
           with:
              boards: |
-                  #board={boardID}, {fieldID}, {fieldValueID}
-                  manhattan=PN_kwHOAmFUEs4AAzKJ, "MDE2OlByb2plY3ROZXh0RmllbGQxNzY0OTcy", "69cd75ba"
+                  #board={boardID},{fieldID},{fieldValueID}
+                  manhattan=PN_kwHOAmFUEs4AAzKJ,"MDE2OlByb2plY3ROZXh0RmllbGQxNzY0OTcy","69cd75ba"
 ```
 
 
