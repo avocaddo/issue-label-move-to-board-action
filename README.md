@@ -1,5 +1,7 @@
 # GitHub Action - Issue Label Move to Board
-This GitHub Action allows you to move add an issue to specific boards when specific labels are added to an issue. It runs every time a label is attached to an issue, and compares the label to the associated list of boards you specified. If a match is found, the action will add the issue to the given board.
+This GitHub Action allows you to add an issue to specific boards (with a given value to a metadata field) when specific labels are added to the issue.
+
+It runs every time a label is attached to an issue, and compares the label to the associated list of boards you specified. If a match is found, the action will add the issue to the given board.
 
 ## Usage
 ### Pre-requisites
